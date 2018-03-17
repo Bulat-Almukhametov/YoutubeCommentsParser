@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace YoutubeCommentsParser.Models
 {
     [Serializable]
-    public class SearchProject
+    public class SerializeData
     {
-        public string Name { get; set; }
+        public string YoutubeKey { get; set; }
+        public Dictionary<Guid, SearchProject> Projects { get; set; }
     }
 }

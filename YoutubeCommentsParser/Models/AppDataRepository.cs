@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,8 @@ namespace YoutubeCommentsParser.Models
 
         public static string YoutubeKey { get; set; }
 
+        public static Dictionary<Guid, SearchProject> SearchProjects { get; private set; } = new Dictionary<Guid, SearchProject>();
+
         #endregion
 
         #region Открытые методы
@@ -28,12 +31,42 @@ namespace YoutubeCommentsParser.Models
                 return new DataLoadResult { Success = false, Message = "Не удалось загрузить тональности слов" };
             }
 
+            Deserialize();
+
             return new DataLoadResult { Success = true };
         }
 
         public static void Save()
         {
+            var memoryStream = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream fileStream = null;
+            try
+            {
+                var data = new SerializeData
+                {
+                    YoutubeKey = YoutubeKey,
+                    Projects = SearchProjects
 
+                };
+                formatter.Serialize(memoryStream, data);
+
+                // если сериализация прошла без ошибок, то записываем данные в файл
+                var path = (String)Properties.Settings.Default["AppDataFilePath"];
+                fileStream = new FileStream(path, FileMode.Create);
+                memoryStream.Position = 0;
+                var byteArray = memoryStream.ToArray();
+                fileStream.Write(byteArray, 0, byteArray.Length);
+            }
+            catch (Exception ex)
+            {
+                _Log.Error(ex.ToString());
+            }
+            finally
+            {
+                memoryStream.Close();
+                fileStream?.Close();
+            }
         }
         #endregion
 
@@ -68,6 +101,33 @@ namespace YoutubeCommentsParser.Models
             }
 
             return true;
+        }
+
+        private static void Deserialize()
+        {
+            FileStream fileStream = null;
+            try
+            {
+                var path = (String)Properties.Settings.Default["AppDataFilePath"];
+                fileStream = new FileStream(path, FileMode.Open);
+
+                BinaryFormatter formatter = new BinaryFormatter();
+                var data = (SerializeData)formatter.Deserialize(fileStream);
+                YoutubeKey = data.YoutubeKey;
+                SearchProjects = data.Projects;
+            }
+            catch(FileNotFoundException ex)
+            {
+
+            }
+            catch(Exception ex)
+            {
+                _Log.Error(ex.ToString());
+            }
+            finally
+            {
+                fileStream?.Close();
+            }
         }
 
         #endregion

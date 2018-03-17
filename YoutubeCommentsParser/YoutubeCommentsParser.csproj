@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\SearchProject.cs" />
+    <Compile Include="Models\SerializeData.cs" />
     <Compile Include="VideoSearchParametersForm.cs">
       <SubType>Form</SubType>
     </Compile>

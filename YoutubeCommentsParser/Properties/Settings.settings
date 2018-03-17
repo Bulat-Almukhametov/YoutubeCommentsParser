@@ -11,5 +11,8 @@
     <Setting Name="DeveloperSiteUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://www.vk.com/zufalligeseite</Value>
     </Setting>
+    <Setting Name="AppDataFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Content\app data.dat</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

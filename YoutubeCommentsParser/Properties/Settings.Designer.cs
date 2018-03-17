@@ -49,5 +49,14 @@ namespace YoutubeCommentsParser.Properties {
                 return ((string)(this["DeveloperSiteUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Content\\app data.dat")]
+        public string AppDataFilePath {
+            get {
+                return ((string)(this["AppDataFilePath"]));
+            }
+        }
     }
 }

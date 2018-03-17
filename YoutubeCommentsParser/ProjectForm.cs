@@ -17,6 +17,20 @@ namespace YoutubeCommentsParser
         public ProjectsForm()
         {
             InitializeComponent();
+            FillProjectGridView();
+        }
+
+        private void FillProjectGridView()
+        {
+            foreach (var sProject in AppDataRepository.SearchProjects)
+            {
+                var i = ProjectsDataGridView.Rows.Add();
+                var cell = ProjectsDataGridView[0, i];
+
+                cell.Value = sProject.Value.Name;
+                cell.Tag = sProject.Key;
+            }
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -43,14 +57,27 @@ namespace YoutubeCommentsParser
 
         private void ProjectsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            var value = (String)ProjectsDataGridView[e.ColumnIndex, e.RowIndex].Value;
+            var cell = ProjectsDataGridView[e.ColumnIndex, e.RowIndex];
+            var value = (String)cell.Value;
+            var id = (Guid)cell.Tag;
             if (value == null || value.Trim().Length == 0)
             {
                 ProjectsDataGridView.Rows.RemoveAt(e.RowIndex);
+                AppDataRepository.SearchProjects.Remove(id);
             }
             else
             {
                 NextButton.Visible = true;
+                NextButton.Tag = id;
+
+                if (AppDataRepository.SearchProjects.ContainsKey(id))
+                {
+                    AppDataRepository.SearchProjects[id].Name = value;
+                }
+                else
+                {
+                    AppDataRepository.SearchProjects.Add(id, new SearchProject { Name = value });
+                }
             }
         }
 
