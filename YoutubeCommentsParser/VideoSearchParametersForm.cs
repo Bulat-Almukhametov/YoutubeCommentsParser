@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace YoutubeCommentsParser
 {
-    public partial class Form1 : Form
+    public partial class VideoSearchParametersForm : Form
     {
-        public Form1()
+        public VideoSearchParametersForm()
         {
             InitializeComponent();
         }

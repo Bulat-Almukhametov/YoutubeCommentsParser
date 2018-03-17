@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="YoutubeCommentsParser.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WordsTonalityFilename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Content\words_tonality.csv</Value>
+    </Setting>
+    <Setting Name="GetGoogleApiKeyUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://console.developers.google.com/apis/credentials</Value>
+    </Setting>
+    <Setting Name="DeveloperSiteUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.vk.com/zufalligeseite</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
