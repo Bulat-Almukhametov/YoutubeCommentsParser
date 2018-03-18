@@ -11,7 +11,7 @@ using YoutubeCommentsParser.Models;
 
 namespace YoutubeCommentsParser
 {
-    public partial class ProjectsForm : Form
+    public partial class ProjectsForm : BaseForm
     {
         public Form KeyForm;
         public ProjectsForm()
@@ -92,12 +92,21 @@ namespace YoutubeCommentsParser
             if (cell != null && !cell.IsInEditMode && cell.Value != null)
             {
                 NextButton.Visible = true;
+                NextButton.Tag = cell.Tag;
             }
         }
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+            var id = (Guid)NextButton.Tag;
+            var project = AppDataRepository.SearchProjects[id];
+            NextForm = new VideoSearchParametersForm(project);
+            NextForm.PreviousForm = this;
+            NextForm.StartPosition = StartPosition;
+            NextForm.Size = Size;
 
+            Hide();
+            NextForm.Show();
         }
 
         private void ProjectsForm_Load(object sender, EventArgs e)
@@ -120,26 +129,7 @@ namespace YoutubeCommentsParser
 
         private void ProjectsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (AppDataRepository.YoutubeKey == null)
-                return;
-
-            var result = MessageBox.Show("Хотите сохранить внесенные изменения?",
-                "Сохранение",
-                MessageBoxButtons.YesNoCancel);
-
-            switch (result)
-            {
-                case DialogResult.Yes:
-                    AppDataRepository.Save();
-                    break;
-
-                case DialogResult.No:
-                    break;
-
-                default:
-                    e.Cancel = true;
-                    break;
-            }
+            
         }
     }
 }

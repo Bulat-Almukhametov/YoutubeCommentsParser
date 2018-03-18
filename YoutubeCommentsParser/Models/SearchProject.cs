@@ -10,5 +10,7 @@ namespace YoutubeCommentsParser.Models
     public class SearchProject
     {
         public string Name { get; set; }
+        public string Query { get; set; }
+        public Dictionary<string, string> Videos { get; set; }
     }
 }

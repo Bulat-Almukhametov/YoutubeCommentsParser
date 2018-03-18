@@ -136,8 +136,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchProject.cs" />
     <Compile Include="Models\SerializeData.cs" />
+    <Compile Include="Models\YoutubeHelper.cs" />
     <Compile Include="VideoSearchParametersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +168,12 @@
     <Compile Include="Models\WordsTonality.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoSearchParametersForm.resx">
+      <DependentUpon>VideoSearchParametersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="YoutubeKeyForm.resx">
       <DependentUpon>YoutubeKeyForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,5 +214,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
