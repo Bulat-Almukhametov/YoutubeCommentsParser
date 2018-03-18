@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using OpenXMLExcel.SLExcelUtility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +22,7 @@ namespace YoutubeCommentsParser
         {
             InitializeComponent();
 
+            backButton.Click += backButton_Click;
             _Project = project;
             QueryComboBox.Text = project.Query;
             LoadVideos();
@@ -76,6 +81,43 @@ namespace YoutubeCommentsParser
             LoadVideos();
 
             LoadPictureBox.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var dialog = new SaveFileDialog();
+            dialog.DefaultExt = "xls";
+            dialog.Filter = "Excell (*.xlsx)|*.xlsx";
+            dialog.FileName = _Project.Name;
+            var result = dialog.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            string filepath = dialog.FileName;
+            var headers = new List<string>();
+            foreach (var column in videosDataGridView.Columns)
+            {
+                headers.Add(((DataGridViewColumn)column).HeaderText);
+            }
+
+            var rows = new List<List<string>>();
+            for (int row = 0; row < videosDataGridView.RowCount; row++)
+            {
+                var cells = new List<string>();
+                for (int column = 0; column < videosDataGridView.ColumnCount; column++)
+                {
+                    cells.Add(videosDataGridView[column, row].Value.ToString());
+                }
+                rows.Add(cells);
+            }
+            
+            SLExcelWriter.Export(new SLExcelData
+            {
+                SheetName = "Фильмы",
+                Headers = headers,
+                DataRows = rows
+            }, filepath);
         }
     }
 }

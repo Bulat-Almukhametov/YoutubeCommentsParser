@@ -33,17 +33,18 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.videosDataGridView = new System.Windows.Forms.DataGridView();
+            this.Caption = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Likes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dislikes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QueryComboBox = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.backButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.NextButton = new System.Windows.Forms.Button();
             this.LoadPictureBox = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.Caption = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViewCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Likes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dislikes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.videosDataGridView)).BeginInit();
@@ -66,6 +67,7 @@
             this.tableLayoutPanel1.Controls.Add(this.LoadButton, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.NextButton, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.LoadPictureBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -117,6 +119,30 @@
             this.videosDataGridView.RowTemplate.Height = 40;
             this.videosDataGridView.Size = new System.Drawing.Size(427, 256);
             this.videosDataGridView.TabIndex = 1;
+            // 
+            // Caption
+            // 
+            this.Caption.HeaderText = "Название";
+            this.Caption.Name = "Caption";
+            this.Caption.Width = 280;
+            // 
+            // ViewCount
+            // 
+            this.ViewCount.HeaderText = "Просм.";
+            this.ViewCount.Name = "ViewCount";
+            this.ViewCount.Width = 45;
+            // 
+            // Likes
+            // 
+            this.Likes.HeaderText = "Понр.";
+            this.Likes.Name = "Likes";
+            this.Likes.Width = 40;
+            // 
+            // Dislikes
+            // 
+            this.Dislikes.HeaderText = "Не нрав.";
+            this.Dislikes.Name = "Dislikes";
+            this.Dislikes.Width = 40;
             // 
             // QueryComboBox
             // 
@@ -204,34 +230,24 @@
             this.LoadPictureBox.TabStop = false;
             this.LoadPictureBox.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(3, 424);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(63, 44);
+            this.button1.TabIndex = 5;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // backgroundWorker
             // 
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
-            // 
-            // Caption
-            // 
-            this.Caption.HeaderText = "Название";
-            this.Caption.Name = "Caption";
-            this.Caption.Width = 280;
-            // 
-            // ViewCount
-            // 
-            this.ViewCount.HeaderText = "Просм.";
-            this.ViewCount.Name = "ViewCount";
-            this.ViewCount.Width = 45;
-            // 
-            // Likes
-            // 
-            this.Likes.HeaderText = "Понр.";
-            this.Likes.Name = "Likes";
-            this.Likes.Width = 40;
-            // 
-            // Dislikes
-            // 
-            this.Dislikes.HeaderText = "Не нрав.";
-            this.Dislikes.Name = "Dislikes";
-            this.Dislikes.Width = 40;
             // 
             // VideoSearchParametersForm
             // 
@@ -240,7 +256,7 @@
             this.ClientSize = new System.Drawing.Size(872, 494);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "VideoSearchParametersForm";
-            this.Text = "VideoSearchParametersForm";
+            this.Text = "Поиск видеозаписей";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.videosDataGridView)).EndInit();
@@ -266,5 +282,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ViewCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Likes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dislikes;
+        private System.Windows.Forms.Button button1;
     }
 }

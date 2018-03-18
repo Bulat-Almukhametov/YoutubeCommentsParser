@@ -142,6 +142,9 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Excell\SLExcelData.cs" />
+    <Compile Include="Excell\SLExcelReader.cs" />
+    <Compile Include="Excell\SLExcelWriter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\SearchProject.cs" />
     <Compile Include="Models\SerializeData.cs" />
