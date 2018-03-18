@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoSearchParametersForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.videosDataGridView = new System.Windows.Forms.DataGridView();
-            this.Caption = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QueryComboBox = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.backButton = new System.Windows.Forms.Button();
@@ -40,6 +40,10 @@
             this.NextButton = new System.Windows.Forms.Button();
             this.LoadPictureBox = new System.Windows.Forms.PictureBox();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.Caption = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Likes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dislikes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.videosDataGridView)).BeginInit();
@@ -91,21 +95,28 @@
             this.videosDataGridView.BackgroundColor = System.Drawing.Color.Ivory;
             this.videosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.videosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Caption});
+            this.Caption,
+            this.ViewCount,
+            this.Likes,
+            this.Dislikes});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.videosDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.videosDataGridView.Dock = System.Windows.Forms.DockStyle.Left;
             this.videosDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.videosDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.videosDataGridView.Location = new System.Drawing.Point(165, 162);
             this.videosDataGridView.Name = "videosDataGridView";
             this.videosDataGridView.RowHeadersVisible = false;
+            this.videosDataGridView.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.videosDataGridView.RowTemplate.Height = 40;
             this.videosDataGridView.Size = new System.Drawing.Size(427, 256);
             this.videosDataGridView.TabIndex = 1;
-            // 
-            // Caption
-            // 
-            this.Caption.HeaderText = "Название";
-            this.Caption.Name = "Caption";
-            this.Caption.Width = 400;
             // 
             // QueryComboBox
             // 
@@ -149,7 +160,6 @@
             this.backButton.Size = new System.Drawing.Size(52, 38);
             this.backButton.TabIndex = 5;
             this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // LoadButton
             // 
@@ -199,6 +209,30 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // Caption
+            // 
+            this.Caption.HeaderText = "Название";
+            this.Caption.Name = "Caption";
+            this.Caption.Width = 280;
+            // 
+            // ViewCount
+            // 
+            this.ViewCount.HeaderText = "Просм.";
+            this.ViewCount.Name = "ViewCount";
+            this.ViewCount.Width = 45;
+            // 
+            // Likes
+            // 
+            this.Likes.HeaderText = "Понр.";
+            this.Likes.Name = "Likes";
+            this.Likes.Width = 40;
+            // 
+            // Dislikes
+            // 
+            this.Dislikes.HeaderText = "Не нрав.";
+            this.Dislikes.Name = "Dislikes";
+            this.Dislikes.Width = 40;
+            // 
             // VideoSearchParametersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,7 +255,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView videosDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Caption;
         private System.Windows.Forms.ComboBox QueryComboBox;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button backButton;
@@ -229,5 +262,9 @@
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.PictureBox LoadPictureBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Caption;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ViewCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Likes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dislikes;
     }
 }

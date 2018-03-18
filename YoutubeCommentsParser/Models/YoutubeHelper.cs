@@ -27,7 +27,7 @@ namespace YoutubeCommentsParser.Models
             return response.Items.Select(item => item.Snippet.Title).ToArray();
         }
 
-        public static Dictionary<string, string> GetVideos(string query, int count = 400)
+        public static Dictionary<string, VideoInfo> GetVideos(string query, int count = 400)
         {
             if (query == null || query.Trim().Length == 0)
                 return null;
@@ -57,13 +57,27 @@ namespace YoutubeCommentsParser.Models
             }
 
 
-            var result = new Dictionary<string, string>();
+            var result = new Dictionary<string, VideoInfo>();
 
             foreach (var item in items)
             {
                 var id = item.Id.VideoId;
                 if (id != null && !result.ContainsKey(id))
-                    result.Add(id, item.Snippet.Title);
+                {
+                    var videoRequest = youtubeService.Videos.List("snippet, statistics");
+                    videoRequest.Id = id;
+                    var videoResponse = videoRequest.Execute().Items[0];
+
+                    if (videoResponse.Statistics.CommentCount != null && videoResponse.Statistics.CommentCount > 0)
+                        result.Add(id, new VideoInfo
+                        {
+                            Caption = item.Snippet.Title,
+                            Likes = (int)(videoResponse.Statistics.LikeCount ?? 0),
+                            Dislikes = (int)(videoResponse.Statistics.DislikeCount ?? 0),
+                            ViewedCount = (int)(videoResponse.Statistics.ViewCount ?? 0)
+                        });
+
+                }
             }
 
             return result;

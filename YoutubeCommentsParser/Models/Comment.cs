@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 namespace YoutubeCommentsParser.Models
 {
     [Serializable]
-    public class SearchProject
+    public struct Comment
     {
-        public string Name { get; set; }
-        public string Query { get; set; }
-        public Dictionary<string, VideoInfo> Videos { get; set; }
+        public string Content { get; set; }
+        public int Rate { get; set; }
     }
 }

@@ -52,5 +52,16 @@ namespace YoutubeCommentsParser
             
             PreviousForm?.Close();
         }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            PreviousForm.Show();
+            PreviousForm.NextForm = null;
+
+            SkipSaveFile = true;
+            Close();
+
+        }
     }
 }

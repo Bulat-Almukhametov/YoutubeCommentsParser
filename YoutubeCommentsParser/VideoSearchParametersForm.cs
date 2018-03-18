@@ -32,7 +32,10 @@ namespace YoutubeCommentsParser
                 foreach (var video in _Project.Videos)
                 {
                     var i = videosDataGridView.Rows.Add();
-                    videosDataGridView["Caption", i].Value = video.Value;
+                    videosDataGridView["Caption", i].Value = video.Value.Caption;
+                    videosDataGridView["Likes", i].Value = video.Value.Likes.ToString();
+                    videosDataGridView["Dislikes", i].Value = video.Value.Dislikes.ToString();
+                    videosDataGridView["ViewCount", i].Value = video.Value.ViewedCount.ToString();
                 }
         }
 
@@ -50,16 +53,7 @@ namespace YoutubeCommentsParser
             //QueryComboBox.SelectionStart = QueryComboBox.Text.Length;
         }
 
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            Hide();
-            PreviousForm.Show();
-            PreviousForm.NextForm = null;
-
-            SkipSaveFile = true;
-            Close();
-
-        }
+        
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
